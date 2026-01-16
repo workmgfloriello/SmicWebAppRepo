@@ -16,7 +16,7 @@ export default function Footer() {
             <div>
               <div className="space-y-4">
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/place/Smi%C4%87+Caf%C3%A9/@41.1084307,16.6892674,17z/data=!3m1!4b1!4m6!3m5!1s0x1347f1963b5753a3:0xaec842f84688f113!8m2!3d41.1084267!4d16.6918423!16s%2Fg%2F11bztgbt13?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group"
@@ -26,9 +26,9 @@ export default function Footer() {
                     className="text-white/60 group-hover:text-white/90 flex-shrink-0 mt-1"
                   />
                   <span>
-                    Via Spritz 123
+                    Piazza Aldo Moro, 6, 
                     <br />
-                    20121 Milano, Italia
+                    70032 Bitonto BA
                   </span>
                 </a>
               </div>
@@ -53,7 +53,7 @@ export default function Footer() {
                     href="tel:+390212345678"
                     className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
                   >
-                    <span>+39 02 1234 5678</span>
+                    <span>+39 327 235 1925</span>
                   </a>
                 </div>
                 <div className="flex justify-between">
@@ -62,16 +62,7 @@ export default function Footer() {
                     href="tel:+390212345678"
                     className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
                   >
-                    <span>+39 02 1234 5678</span>
-                  </a>
-                </div>
-                <div className="flex justify-between">
-                  <span>Anna</span>
-                  <a
-                    href="tel:+390212345678"
-                    className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
-                  >
-                    <span>+39 02 1234 5678</span>
+                    <span>+39 339 361 4193</span>
                   </a>
                 </div>
               </div>

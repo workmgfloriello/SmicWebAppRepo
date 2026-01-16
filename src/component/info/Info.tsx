@@ -24,7 +24,6 @@ export function Info() {
 
       <div className="relative z-10 py-16 px-4">
         <div className="max-w-5xl mx-auto">
-
           {/* Header */}
           <div className="text-center mb-16">
             <h1
@@ -170,23 +169,41 @@ export function Info() {
                 </div>
                 <div className="space-y-5">
                   <div className="flex items-start gap-4">
-                    <MapPin
-                      size={22}
-                      className="text-white/60 flex-shrink-0 mt-1"
-                    />
                     <span className="text-white/90">
-                      Piazza Aldo Moro, 6, 70032 Bitonto BA
+                      <a
+                        href="https://www.google.com/maps/place/Smi%C4%87+Caf%C3%A9/@41.1084307,16.6892674,17z/data=!3m1!4b1!4m6!3m5!1s0x1347f1963b5753a3:0xaec842f84688f113!8m2!3d41.1084267!4d16.6918423!16s%2Fg%2F11bztgbt13?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group"
+                      >
+                        <MapPin
+                          size={20}
+                          className="text-white/60 group-hover:text-white/90 flex-shrink-0 mt-1"
+                        />
+                        <span>
+                          Piazza Aldo Moro, 6,
+                          <br />
+                          70032 Bitonto BA
+                        </span>
+                      </a>
                     </span>
                   </div>
                   <div className="flex items-center gap-4">
                     <Phone size={22} className="text-white/60 flex-shrink-0" />
-                    <span className="text-white/90">080 917 8435</span>
+                    <span className="text-white/90">
+                      <a
+                        href="tel:+390212345678"
+                        className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
+                      >
+                        <span>080 917 8435</span>
+                      </a>
+                    </span>
                   </div>
                 </div>
 
                 {/* slogan */}
               </div>
-              <div >
+              <div>
                 <div className=" text-center">
                   <h1
                     className="text-2xl md:text-6xl font-bold tracking-wider"
