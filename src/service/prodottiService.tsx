@@ -1,7 +1,7 @@
 // src/services/ProdottiService.ts
 export default class ProdottiService {
   private categoria: string;
-  private baseUrl: string = "http://localhost/smicBack/index.php";
+  //private baseUrl: string = "http://localhost/smicBack/index.php";
   private altervistaUrl: string = "https://jumpin.altervista.org";
 
   constructor(categoria: string = "caffetteria") {
