@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { registerSW } from 'virtual:pwa-register'
 
 import CategoryMenu from './component/Menu/singleMenu/categoryMenu.tsx'
 
@@ -22,3 +23,12 @@ createRoot(document.getElementById('root')!).render(
     <RouterProvider router={router} />
   </StrictMode>,
 )
+
+registerSW({
+  onNeedRefresh() {
+    console.log('Nuova versione disponibile')
+  },
+  onOfflineReady() {
+    console.log('App pronta offline')
+  }
+})

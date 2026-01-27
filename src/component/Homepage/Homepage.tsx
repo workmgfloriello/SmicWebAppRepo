@@ -1,6 +1,6 @@
 import "./Homepage.css";
 import { useState, useEffect, useMemo } from "react";
-import { Menu, Calendar, Sparkles, Clock} from "lucide-react";
+import { Menu, Calendar, Sparkles, Clock } from "lucide-react";
 import { GeneralMenu } from "../Menu/GeneralMenu";
 import Logo from "../../assets/logo/logoNoBG.svg";
 import BG from "../../assets/img/bgHome.jpg";
@@ -195,21 +195,23 @@ export function Homepage() {
               </button>
             </div>
           </div>
-          
         </main>
         <div className="flex justify-center animate-bounce w-full">
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6 text-white/70"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-  </svg>
-</div>
-
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-white/70"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -230,7 +232,6 @@ export function Homepage() {
           animation: fadeIn 0.3s ease-in;
         }
       `}</style>
-      
     </div>
   );
 }
