@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 interface Variante {
   type: string;
   nome: string;
@@ -5,6 +7,8 @@ interface Variante {
 }
 
 export interface Prodotto {
+  name: ReactNode;
+  price: number;
   nome: string;
   prezzo: number;
   variante?: Variante[];

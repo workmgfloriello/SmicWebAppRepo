@@ -41,7 +41,7 @@ export function GeneralMenu({
           "COCKTAILS", // cocktail classici e signature
           "BEVANDE E VINI", // selezione vini e birre artigianali
           "FOOD", // piatti, snack, tapas, dolci
-          "GELATERIA", // gelato artigianale e sorbetti
+          "GELATI", // gelato artigianale e sorbetti
           "PASTICCERIA", // dolci da forno e pasticceria fresca, torte su ordinazione
         ].map((item, index) => (
           <div
@@ -52,7 +52,7 @@ export function GeneralMenu({
               letterSpacing: "0.15em",
               animationDelay: `${index * 0.1}s`,
             }}
-            onClick={() => handleMenuClick(item)}
+            onClick={() => handleMenuClick(item.toLowerCase())}
           >
             {item}
             <span

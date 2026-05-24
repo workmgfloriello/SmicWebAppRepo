@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProdottiService from "../../../service/prodottiService";
-import { Coffee, MoveLeft, Wine } from "lucide-react";
+import { Coffee, MoveLeft, Wine,IceCreamCone } from "lucide-react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { useSearchParams } from "react-router-dom";
@@ -34,6 +34,7 @@ export default function CategoryMenu() {
   const getIcon = () => {
     if (categoria == "caffetteria") return <Coffee />;
     if (categoria == "bevande e vini") return <Wine />;
+    if (categoria == "gelati") return <IceCreamCone />;
   };
 
   const navigate = useNavigate();
@@ -131,7 +132,7 @@ export default function CategoryMenu() {
                               <span className="text-white">{getIcon()}</span>
                             </div>
                             <span className="font-medium text-white/90 text-base md:text-lg">
-                              {product.nome}
+                              {product.name}
                             </span>
                           </div>
                           <div
@@ -144,9 +145,9 @@ export default function CategoryMenu() {
                               letterSpacing: "0.05em",
                             }}
                           >
-                            {product.prezzo === 0
+                            {product.price === 0
                               ? "Su richiesta"
-                              : `€${product.prezzo.toFixed(2)}`}
+                              : `€${product.price.toFixed(2)}`}
                           </div>
                           {Array.isArray(product.variante) &&
                           product.variante.length > 0 ? (
@@ -205,7 +206,7 @@ export default function CategoryMenu() {
 
                                   <div className="text-xl md:text-2xl px-3 md:px-4 py-1 md:py-2 rounded-xl shadow-lg bg-gradient-to-br from-[#4d7c8a]to-[#5a8c9c] text-[#f4e5a8] font-['Bebas_Neue'] tracking-wider  ">
                                     {variante.type === "same"
-                                    ? `€${product.prezzo.toFixed(2)}`
+                                    ? `€${product.price.toFixed(2)}`
                                     : variante.type === "extra"
                                     ? `+${variante.prezzo.toFixed(2)}€`
                                     : `-${variante.prezzo.toFixed(2)}€`}

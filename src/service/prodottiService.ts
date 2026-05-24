@@ -2,7 +2,7 @@
 export default class ProdottiService {
   private categoria: string;
   //private baseUrl: string = "http://localhost/smicBack/index.php";
-  private altervistaUrl: string = "https://jumpin.altervista.org";
+  private altervistaUrl: string = "https://smiccafe.altervista.org";
 
   constructor(categoria: string = "caffetteria") {
     this.categoria = categoria;
@@ -19,7 +19,7 @@ export default class ProdottiService {
   public async getProdotti(): Promise<Array<{ nome: string; prezzo: number }>> {
     this.resetName() ;
     try {
-      const endpoint = `${this.altervistaUrl}/index.php?menu=${this.categoria}`;
+      const endpoint = `${this.altervistaUrl}/?api=products&category=${this.categoria}`;
       const response = await fetch(endpoint);
 
       if (!response.ok) {
