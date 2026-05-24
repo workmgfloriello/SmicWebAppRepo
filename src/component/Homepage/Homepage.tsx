@@ -5,10 +5,13 @@ import { GeneralMenu } from "../Menu/GeneralMenu";
 import Logo from "../../assets/logo/logoNoBG.svg";
 import BG from "../../assets/img/bgHome.jpg";
 import LogoMixology from "../../assets/logo/ppMixology.jpeg";
+import { useNavigate } from "react-router";
 
 export function Homepage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const navivate = useNavigate();
+
   useEffect(() => {
     const timerId = setInterval(() => setDate(new Date()), 1000);
     return () => clearInterval(timerId); // Pulizia
@@ -22,6 +25,16 @@ export function Homepage() {
   const updateMenuState = (isOpen: boolean) => {
     setMenuOpen(isOpen);
   };
+
+  const onClickPrenotaOra = () => {
+    //controllare se l'utente è loggato, se sì mostrare il form di prenotazione, altrimenti mostrare il form di login
+    let isLoggedIn = false; // Simulazione dello stato di login
+    if (isLoggedIn) {
+      alert("Funzione Prenotazione non implementata");
+    } else {
+      navivate("/auth");
+    }
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -131,7 +144,7 @@ export function Homepage() {
             {/* Two Column Layout for Other Buttons */}
 
             {/* Prenota Ora Button */}
-            <div className="relative group cursor-pointer">
+            <div className="relative group cursor-pointer" onClick={() => onClickPrenotaOra()}>
               <div
                 className="absolute inset-0 rounded-xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300"
                 style={{ backgroundColor: "#D4AF37" }}
@@ -162,7 +175,7 @@ export function Homepage() {
             </div>
 
             {/* La Tua Carta Button ppMixology */}
-            <div className="relative group">
+            <div className="relative group" onClick={() => alert("Funzione La Tua Carta non implementata")}>
               <div
                 className="absolute inset-0 rounded-xl blur-lg opacity-60 group-hover:opacity-90 transition-opacity duration-300"
                 style={{ backgroundColor: "#A3C4BC" }}
