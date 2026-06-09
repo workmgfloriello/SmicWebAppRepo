@@ -5,7 +5,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 
 import CategoryMenu from './component/Menu/singleMenu/categoryMenu.tsx'
-import Auth from './component/Auth/auth.tsx'
+import Auth from './component/Auth/Auth.tsx'
+import GeneralPrenotazioni from './component/Prenotazioni/GeneralPrenotazioni.tsx'
 
 
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path:'/auth',
     element: <Auth />,
+  },
+  {
+    path:'/prenotazioni',
+    element: <GeneralPrenotazioni />,
   }
 ])
 createRoot(document.getElementById('root')!).render(
