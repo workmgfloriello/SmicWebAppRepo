@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router";
-import { MoveLeft, User, Lock, Mail, Eye, EyeOff } from "lucide-react";
+import {
+  MoveLeft,
+  User,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+  Building2,
+  MapPin,
+} from "lucide-react";
+import AuthService from "../../service/authService";
 
 type AuthMode = "login" | "register";
 
@@ -12,11 +22,15 @@ export default function Auth() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const auth = new AuthService();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
     confirm: "",
+    address: "",
+    city: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,13 +41,33 @@ export default function Auth() {
     e.preventDefault();
     setLoading(true);
     // Simulate API call
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
+
+    if (mode === "login") {
+      auth
+        .login(form.email, form.password)
+        .then((success) => {
+          if (success) {
+            navigate("/prenotazioni");
+          }
+        })
+        .finally(() => setLoading(false));
+    }
+
+    if (mode === "register") {
+      auth.register(
+        form.name,
+        form.email,
+        form.password,
+        form.confirm,
+        form.address,
+        form.city
+      )
+    }
   };
 
   const switchMode = (next: AuthMode) => {
     if (next === mode) return;
-    setForm({ name: "", email: "", password: "", confirm: "" });
+    setForm({ name: "", email: "", password: "", confirm: "", address: "", city: "" });
     setMode(next);
   };
 
@@ -67,7 +101,10 @@ export default function Auth() {
 
       {/* ── Back button ── */}
       <div className="absolute top-6 left-6 z-20">
-        <button onClick={() => navigate("/")} className="text-white/70 hover:text-white transition-colors">
+        <button
+          onClick={() => navigate("/")}
+          className="text-white/70 hover:text-white transition-colors"
+        >
           <MoveLeft size={32} />
         </button>
       </div>
@@ -108,7 +145,10 @@ export default function Auth() {
             </h1>
             <p
               className="text-white/50 text-sm mt-1"
-              style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em" }}
+              style={{
+                fontFamily: "'Bebas Neue', sans-serif",
+                letterSpacing: "0.1em",
+              }}
             >
               {mode === "login"
                 ? "ACCEDI AL TUO ACCOUNT"
@@ -126,7 +166,8 @@ export default function Auth() {
                 style={{
                   fontFamily: "'Bebas Neue', sans-serif",
                   letterSpacing: "0.1em",
-                  backgroundColor: mode === m ? "rgba(212,175,55,0.2)" : "transparent",
+                  backgroundColor:
+                    mode === m ? "rgba(212,175,55,0.2)" : "transparent",
                   color: mode === m ? "#F4E5A8" : "rgba(255,255,255,0.4)",
                 }}
               >
@@ -218,12 +259,41 @@ export default function Auth() {
                 />
               )}
 
+              {/* Indirizzo — register only */}
+              {mode === "register" && (
+                <InputField
+                  icon={<MapPin size={16} />}
+                  label="INDIRIZZO"
+                  name="address"
+                  type="text"
+                  placeholder="Via Roma 12"
+                  value={form.address}
+                  onChange={handleChange}
+                />
+              )}
+
+              {/* Città — register only */}
+              {mode === "register" && (
+                <InputField
+                  icon={<Building2 size={16} />}
+                  label="CITTÀ"
+                  name="city"
+                  type="text"
+                  placeholder="Milano"
+                  value={form.city}
+                  onChange={handleChange}
+                />
+              )}
+
               {/* Forgot password */}
               {mode === "login" && (
                 <div className="text-right">
                   <button
                     className="text-xs text-white/40 hover:text-[#F4E5A8] transition-colors"
-                    style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}
+                    style={{
+                      fontFamily: "'Bebas Neue', sans-serif",
+                      letterSpacing: "0.08em",
+                    }}
                   >
                     PASSWORD DIMENTICATA?
                   </button>
@@ -248,9 +318,24 @@ export default function Auth() {
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                    <svg
+                      className="animate-spin h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      />
                     </svg>
                     CARICAMENTO...
                   </span>
@@ -264,7 +349,10 @@ export default function Auth() {
               {/* Divider */}
               <div className="flex items-center gap-3 pt-2">
                 <div className="flex-1 h-px bg-white/10" />
-                <span className="text-white/30 text-xs" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                <span
+                  className="text-white/30 text-xs"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                >
                   OPPURE
                 </span>
                 <div className="flex-1 h-px bg-white/10" />
@@ -272,9 +360,13 @@ export default function Auth() {
 
               {/* Switch mode text */}
               <p className="text-center text-sm text-white/40">
-                {mode === "login" ? "Non hai un account? " : "Hai già un account? "}
+                {mode === "login"
+                  ? "Non hai un account? "
+                  : "Hai già un account? "}
                 <button
-                  onClick={() => switchMode(mode === "login" ? "register" : "login")}
+                  onClick={() =>
+                    switchMode(mode === "login" ? "register" : "login")
+                  }
                   className="transition-colors hover:text-[#F4E5A8]"
                   style={{ color: "#D4AF37" }}
                 >
@@ -286,7 +378,13 @@ export default function Auth() {
         </motion.div>
 
         {/* Footer note */}
-        <p className="text-center text-white/30 text-xs mt-6" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
+        <p
+          className="text-center text-white/30 text-xs mt-6"
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            letterSpacing: "0.08em",
+          }}
+        >
           TUTTI I DATI SONO PROTETTI E CRITTOGRAFATI
         </p>
       </div>
@@ -311,12 +409,24 @@ interface InputFieldProps {
   rightAction?: React.ReactNode;
 }
 
-function InputField({ icon, label, name, type, placeholder, value, onChange, rightAction }: InputFieldProps) {
+function InputField({
+  icon,
+  label,
+  name,
+  type,
+  placeholder,
+  value,
+  onChange,
+  rightAction,
+}: InputFieldProps) {
   return (
     <div className="space-y-1">
       <label
         className="text-xs text-white/50 block"
-        style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.1em" }}
+        style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          letterSpacing: "0.1em",
+        }}
       >
         {label}
       </label>
